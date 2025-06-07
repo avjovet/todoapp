@@ -1,0 +1,117 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+#login-section,
+#register-section {
+    background-color: #fafafa; /* Fondo blanquito */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    position: relative;
+    z-index: 111;
+    padding: 20px;
+}
+
+
+/* Tabs en la esquina superior derecha con estilo ovalado y letras pequeñas */
+#tabs {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#tabs button {
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Solo movimiento */
+}
+
+#tabs button:hover {
+    transform: translateY(-2px); /* Movimiento sutil hacia arriba */
+}
+
+/* Botón "Iniciar sesión" - solo texto negro */
+#btn-login {
+    background-color: transparent;
+    color: #000;
+}
+
+/* Botón "Registrarse" - negro con texto blanco */
+#btn-register {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Contenedor centrado de login o registro con fondo blanco claro */
+div.form-container {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h2 {
+    margin: 0 0 15px;
+    font-size: 24px;
+    color: #333;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botones de enviar (dentro de formularios) */
+button[type="submit"],
+button:not(#btn-login):not(#btn-register) {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #000000;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+
+}
+
+button[type="submit"]:hover,
+button:not(#btn-login):not(#btn-register):hover {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #000000;
+    transition: ease-in-out 0.5s;
+
+
+}
+
+/* Ocultar secciones */
+.hidden {
+    display: none;
+}

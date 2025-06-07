@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="login.css" />
+
+  <style>
+    .hidden { display: none; }
+    #tabs button { margin-right: 10px; }
+  </style>
+</head>
+  <body>
+    <div id="tabs">
+    <button id="btn-login" title="Iniciar sesión">Iniciar sesión</button>
+    <button id="btn-register" title="Registrarse">Registrarse</button>
+  </div>
+
+
+  <div id="login-section">
+    <h2>Iniciar Sesión</h2>
+    <input type="email" id="login-email" placeholder="Correo electrónico" />
+    <br />
+    <input type="password" id="login-password" placeholder="Contraseña" />
+    <br />
+    <button id="login-btn">Ingresar</button>
+  </div>
+
+  <div id="register-section" class="hidden">
+    <h2>Crear cuenta</h2>
+    <input type="email" id="register-email" placeholder="Correo electrónico" />
+    <br />
+    <input type="password" id="register-password" placeholder="Contraseña" />
+    <br />
+    <button id="register-btn">Registrarme</button>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+
+  <!-- Script login/registro -->
+  <script type="module" src="./login.js"></script>
+</body>
+</html>

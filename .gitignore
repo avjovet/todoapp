@@ -1,0 +1,6 @@
+# Ignorar dependencias de Node.js
+auth/node_modules/
+backend/node_modules/
+
+# Ignorar el archivo de credenciales de Firebase
+auth/todolist-92e56-firebase-adminsdk-fbsvc-e851359006.json

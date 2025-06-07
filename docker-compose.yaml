@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+  auth:
+    build:
+      context: ./auth
+    container_name: auth_service
+    ports:
+      - "6000:6000"
+    volumes:
+      - ./auth:/app
+    restart: unless-stopped
+    
+volumes:
+  mongo-data:

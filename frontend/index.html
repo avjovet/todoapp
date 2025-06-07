@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div id="app-content" style="display: none;">
+  <div class="contenedor1">
+    
+    <div class="header-row">
+      <h1>All Tasks</h1>
+        <button id="logout-btn" title="Cerrar sesión">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>  
+    </div>
+
+    <div class="counters">
+      <div class="counter pending">
+        Pendientes <div id="pending-count" class="count-circle"></div>
+      </div>
+      <div class="counter done">
+        Completadas <div id="done-count" class="count-circle"></div>
+      </div>
+    </div>
+    
+
+
+    <div class="main-content">
+      <form id="todo-form">
+        <input id="todo-input" type="text" placeholder="Agregar tarea..." required />
+        <select id="importance-select">
+          <option value="Media" selected>Media</option>
+          <option value="Alta">Alta</option>
+          <option value="Baja">Baja</option>
+        </select>
+        <button type="submit">Agregar</button>
+        
+        
+      </form>
+
+      <ul id="todo-list"></ul>
+    </div>
+  </div>
+  </div>
+    <!-- Firebase -->
+  <!-- Asegúrate de incluir el SDK de app y auth -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+
+   <!-- Tu script principal de la aplicación -->
+   <!-- Asegúrate de que esté después de los scripts de Firebase si dependen de ellos globalmente -->
+  <script type="module" src="./app.js"></script>
+
+</body>
+</html>
