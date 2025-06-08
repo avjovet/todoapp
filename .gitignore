@@ -4,3 +4,4 @@ backend/node_modules/
 
 # Ignorar el archivo de credenciales de Firebase
 auth/todolist-92e56-firebase-adminsdk-fbsvc-e851359006.json
+backend/todolist-92e56-firebase-adminsdk-fbsvc-e851359006.json
