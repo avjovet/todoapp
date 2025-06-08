@@ -62,6 +62,13 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+async function getIdToken() {
+  const user = auth.currentUser;
+  if (user) {
+    return await user.getIdToken();
+  }
+  return null;
+}
 
 const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
@@ -77,9 +84,14 @@ form.addEventListener('submit', async e => {
   const importance = select.value;
   if (!text) return;
 
+  const token = await getIdToken();
+
   await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify({ text, importance })
   });
 
@@ -87,8 +99,14 @@ form.addEventListener('submit', async e => {
   fetchTodos();
 });
 
+
 async function fetchTodos() {
-  const res = await fetch(API_URL);
+  const token = await getIdToken();
+  const res = await fetch(API_URL, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
   const todos = await res.json();
   list.innerHTML = '';
   todos.forEach(todo => {
@@ -133,7 +151,7 @@ async function fetchTodos() {
 
     // Botón eliminar
     const delBtn = document.createElement('button');
-    delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Icono de tachito
+    delBtn.textContent = 'Eliminar';
     delBtn.classList.add('delete');
     delBtn.addEventListener('click', () => deleteTodo(todo._id));
 
@@ -154,27 +172,46 @@ function importanceColor(level) {
 }
 
 async function toggleComplete(id, completed) {
+  const token = await getIdToken();
+
   await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify({ completed })
   });
   fetchTodos();
 }
 
 async function editTodo(id, text, importance) {
+  const token = await getIdToken();
+
   await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
     body: JSON.stringify({ text, importance })
   });
   fetchTodos();
 }
 
+
 async function deleteTodo(id) {
-  await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+  const token = await getIdToken();
+
+  await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
   fetchTodos();
 }
+
 
 function updateCounters(todos) {
   const pendingCount = todos.filter(todo => !todo.completed).length;
