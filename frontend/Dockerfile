@@ -1,4 +1,14 @@
-# frontend/Dockerfile
-FROM nginx:stable-alpine
+FROM node:18-alpine
 
-COPY . /usr/share/nginx/html
+WORKDIR /app
+
+COPY package*.json ./
+
+ENV NODE_ENV=development
+RUN npm install
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["npm", "start"]
